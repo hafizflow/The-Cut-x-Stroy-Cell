@@ -31,7 +31,7 @@ class BrowseScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 16.w, right: 16.w),
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -45,7 +45,6 @@ class BrowseScreen extends StatelessWidget {
                   GestureDetector(
                     onTap: () => controller.toggleFilter(),
                     child: Container(
-                      width: 92.w,
                       padding: EdgeInsets.symmetric(
                         horizontal: 8.w,
                         vertical: 4.h,

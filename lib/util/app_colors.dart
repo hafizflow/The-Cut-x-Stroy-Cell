@@ -27,10 +27,17 @@ class AppColors {
   static Color red = const Color(0xFFCB4448);
   static Color anotherRed = const Color(0xFFBE151A);
   static Color deepRed = const Color(0xFF690C0E);
+  static Color borderRed = const Color(0xFFEBB6B8);
   static Color lightRed = const Color(0xFFF9E8E8);
   static Color lightYellow = const Color(0xFFFDF7E6);
   static Color yellow = const Color(0xFFF0CB54);
   static Color grey = const Color(0xFFEBF2FE);
+  static Color yellowBorder = const Color(0xFFF8E7B0);
+  static Color redBg = const Color(0xFFBE151A);
+  static Color greenBg = const Color(0xFF34C759);
+  static Color yellowBg = const Color(0xFFD3A100);
+  static Color brown = const Color(0xFF614A00);
+  static Color darkBrown = const Color(0xFF50090B);
 
   static BoxShadow shadow = BoxShadow(
     blurRadius: 4,

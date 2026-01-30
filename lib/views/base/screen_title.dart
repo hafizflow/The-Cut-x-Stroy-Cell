@@ -25,6 +25,8 @@ class ScreenTitle extends StatelessWidget {
               child: SvgImageWidget.asset(
                 Logos.arrowLeft,
                 color: AppColors.navbarColor,
+                width: 24.w,
+                height: 24.h,
               ),
             ),
 
