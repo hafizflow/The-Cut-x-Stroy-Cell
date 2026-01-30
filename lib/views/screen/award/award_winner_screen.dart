@@ -4,6 +4,7 @@ import 'package:flutter_extension/util/app_text_style.dart';
 import 'package:flutter_extension/util/logos.dart';
 import 'package:flutter_extension/views/base/screen_title.dart';
 import 'package:flutter_extension/views/base/svg_image_widget.dart';
+import 'package:flutter_extension/views/screen/award/widgets/award_card.dart';
 import 'package:flutter_extension/views/screen/award/widgets/stat_line.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -71,16 +72,34 @@ class AwardWinnerScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: AppColors.selectedNavColor,
-                        width: 1,
-                      ),
-                    ),
-                  ),
+                AwardCard(
+                  iconAsset: Logos.secondPlace,
+                  rankText: "2nd",
+                  title: "Midnight Whispers",
+                  author: "Sarah Chen",
+                  rating: 4.9,
+                  voteCount: 2340,
+                  borderColor: AppColors.selectedNavColor,
+                  iconColor: Colors.black,
+                  onTap: () {
+                    debugPrint("Award card tapped");
+                  },
+                ),
+
+                AwardCard(
+                  iconAsset: Logos.thirdPlace,
+                  rankText: "3rd",
+                  title: "Midnight Whispers",
+                  author: "Sarah Chen",
+                  rating: 4.9,
+                  voteCount: 2340,
+                  borderColor: AppColors.selectedNavColor,
+                  iconColor: Colors.black,
+                  onTap: () {
+                    debugPrint("Award card tapped");
+                  },
                 ),
               ],
             ),
