@@ -1,113 +1,68 @@
-import 'dart:ui';
-
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_extension/util/app_colors.dart';
+import 'package:flutter_extension/util/app_text_style.dart';
+import 'package:flutter_extension/util/logos.dart';
+import 'package:flutter_extension/views/base/svg_image_widget.dart';
+import 'package:flutter_extension/views/screen/upload/widgets/dashed_printer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class VideoUploadWidget extends StatelessWidget {
-  const VideoUploadWidget({super.key});
+class VideoUpload extends StatelessWidget {
+  const VideoUpload({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 40.h),
+      height: 228.h,
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF9F0),
-        borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(
-          color: const Color(0xFFB71C1C).withOpacity(0.5),
-          style: BorderStyle.none,
-        ),
+        color: AppColors.lightYellow,
+        borderRadius: BorderRadius.circular(4.r),
       ),
       child: CustomPaint(
         painter: DashedRectPainter(
-          color: const Color(0xFFB71C1C),
+          color: AppColors.dotedBorderRed,
           strokeWidth: 1.0,
           gap: 5.0,
         ),
         child: InkWell(
-          onTap: () {
-            // Handle video selection
+          onTap: () async {
+            final result = await FilePicker.platform.pickFiles(
+              allowedExtensions: ['mp4', 'mov', 'avif'],
+              type: FileType.video,
+            );
+            if (result == null) return;
+
+            final file = result.files.first;
           },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: 30.r,
-                backgroundColor: const Color(0xFFB71C1C),
-                child: Icon(
-                  Icons.upload_sharp,
-                  color: Colors.white,
-                  size: 30.sp,
+          borderRadius: BorderRadius.circular(4.r),
+          child: Center(
+            child: Column(
+              spacing: 8.h,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 30.r,
+                  backgroundColor: const Color(0xFFB71C1C),
+                  child: SvgImageWidget.asset(
+                    Logos.videoUpload,
+                    width: 30.w,
+                    height: 30.h,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              SizedBox(height: 16.h),
-              Text(
-                "Tap to select video",
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black87,
+                Text(
+                  "Tap to select video",
+                  style: AppTextStyles.title14_w400(),
                 ),
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                "MP4, MOV, AVI (Max 500MB)",
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: Colors.blueGrey.shade400,
+                Text(
+                  "MP4, MOV, AVIF (Max 500MB)",
+                  style: AppTextStyles.title14_w400(color: AppColors.greyColor),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-}
-
-// Simple Painter for the dashed border effect
-class DashedRectPainter extends CustomPainter {
-  final Color color;
-  final double strokeWidth;
-  final double gap;
-
-  DashedRectPainter({
-    required this.color,
-    this.strokeWidth = 1.0,
-    this.gap = 5.0,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..color = color
-      ..strokeWidth = strokeWidth
-      ..style = PaintingStyle.stroke;
-
-    Path path = Path()
-      ..addRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromLTWH(0, 0, size.width, size.height),
-          Radius.circular(12.r),
-        ),
-      );
-
-    Path dashPath = Path();
-    double distance = 0.0;
-    for (PathMetric measure in path.computeMetrics()) {
-      while (distance < measure.length) {
-        dashPath.addPath(
-          measure.extractPath(distance, distance + gap),
-          Offset.zero,
-        );
-        distance += gap * 2;
-      }
-      distance = 0.0;
-    }
-    canvas.drawPath(dashPath, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

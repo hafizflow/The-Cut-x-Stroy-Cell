@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_extension/util/app_text_style.dart';
 import 'package:flutter_extension/util/logos.dart';
+import 'package:flutter_extension/views/base/custom_button.dart';
 import 'package:flutter_extension/views/base/screen_title.dart';
 import 'package:flutter_extension/views/base/svg_image_widget.dart';
 import 'package:flutter_extension/views/screen/upload/widgets/custom_stepper.dart';
+import 'package:flutter_extension/views/screen/upload/widgets/info_card.dart';
 import 'package:flutter_extension/views/screen/upload/widgets/video_upload.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -34,7 +36,12 @@ class UploadScreen extends StatelessWidget {
                 Text("Main Video", style: AppTextStyles.title14_w500()),
               ],
             ),
-            const VideoUploadWidget(),
+            SizedBox(height: 8.h),
+            const VideoUpload(),
+            SizedBox(height: 24.h),
+            const InfoCard(),
+            const Spacer(),
+            CustomButton(onTap: () {}, text: "Next"),
           ],
         ),
       ),

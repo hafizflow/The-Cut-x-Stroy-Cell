@@ -37,7 +37,7 @@ class MainWrapper extends StatelessWidget {
           notchMargin: 0,
           elevation: 0,
           height: 70.h,
-          color: AppColors.navbarColor,
+          color: AppColors.backgroundColor,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: SizedBox(

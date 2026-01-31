@@ -15,4 +15,8 @@ class Logos {
   static String secondPlace = "assets/logos/2nd.svg";
   static String thirdPlace = "assets/logos/3rd.svg";
   static String video = "assets/logos/video.svg";
+  static String videoUpload = "assets/logos/videoUpload.svg";
+  static String information = "assets/logos/information.svg";
+  static String checkmark = "assets/logos/checkmark.svg";
+  static String arrowRight = "assets/logos/arrowRight.svg";
 }

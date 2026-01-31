@@ -30,7 +30,7 @@ class CustomTextField extends StatelessWidget {
           ),
         ),
         filled: true,
-        fillColor: AppColors.searchFieldFillColor,
+        fillColor: AppColors.lightRed,
         contentPadding: const EdgeInsets.symmetric(vertical: 12.0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0.r),
