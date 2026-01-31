@@ -14,4 +14,5 @@ class Logos {
   static String champion = "assets/logos/champion.svg";
   static String secondPlace = "assets/logos/2nd.svg";
   static String thirdPlace = "assets/logos/3rd.svg";
+  static String video = "assets/logos/video.svg";
 }

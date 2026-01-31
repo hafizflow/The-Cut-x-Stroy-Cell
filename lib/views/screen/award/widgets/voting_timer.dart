@@ -27,7 +27,7 @@ class VotingTimer extends StatelessWidget {
                 Logos.time,
                 width: 24.w,
                 height: 24.h,
-                color: AppColors.anotherRed,
+                color: AppColors.redBg,
               ),
               SizedBox(width: 8.w),
               Text('Voting End In', style: AppTextStyles.title16_w400()),

@@ -61,7 +61,7 @@ class AwardWinnerScreen extends StatelessWidget {
                       Text(
                         "Sarah Chen",
                         style: AppTextStyles.title12_w400(
-                          color: AppColors.subHeadingColor,
+                          color: AppColors.greyColor,
                         ),
                       ),
                       const StatLine(rating: 4.5, voteCount: 2045),

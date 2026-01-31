@@ -72,9 +72,7 @@ class AwardCard extends StatelessWidget {
             /// Author
             Text(
               author,
-              style: AppTextStyles.title12_w400(
-                color: AppColors.subHeadingColor,
-              ),
+              style: AppTextStyles.title12_w400(color: AppColors.greyColor),
             ),
 
             SizedBox(height: 6.h),

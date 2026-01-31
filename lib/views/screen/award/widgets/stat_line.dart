@@ -19,19 +19,19 @@ class StatLine extends StatelessWidget {
         const SizedBox(width: 4),
         Text(
           rating.toString(),
-          style: AppTextStyles.title12_w400(color: AppColors.subHeadingColor),
+          style: AppTextStyles.title12_w400(color: AppColors.greyColor),
         ),
         const SizedBox(width: 16),
         SvgImageWidget.asset(
           Logos.thumbs,
           width: 16.w,
           height: 16.h,
-          color: AppColors.subHeadingColor,
+          color: AppColors.greyColor,
         ),
         const SizedBox(width: 4),
         Text(
           '$voteCount votes',
-          style: AppTextStyles.title12_w400(color: AppColors.subHeadingColor),
+          style: AppTextStyles.title12_w400(color: AppColors.greyColor),
         ),
       ],
     );

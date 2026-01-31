@@ -18,14 +18,11 @@ class AppColors {
   static Color navbarColor = const Color(0xFF222222);
   static Color unselectedNavColor = const Color(0xFFF9F2FF);
   static Color selectedNavColor = const Color(0xFFE8B100);
-  static Color searchTextColor = const Color(0xFF818898);
   static Color searchFieldBorderColor = const Color(0xFFE19396);
   static Color searchFieldFillColor = const Color(0xFFF9E8E8);
 
-  static Color subHeadingColor = const Color(0xFF818898);
   static Color secondaryColor = const Color(0xB0000000).withValues(alpha: 0.7);
   static Color red = const Color(0xFFCB4448);
-  static Color anotherRed = const Color(0xFFBE151A);
   static Color deepRed = const Color(0xFF690C0E);
   static Color borderRed = const Color(0xFFEBB6B8);
   static Color lightRed = const Color(0xFFF9E8E8);
@@ -38,6 +35,7 @@ class AppColors {
   static Color yellowBg = const Color(0xFFD3A100);
   static Color brown = const Color(0xFF614A00);
   static Color darkBrown = const Color(0xFF50090B);
+  static Color gray = const Color(0xFFD9D9D9);
 
   static BoxShadow shadow = BoxShadow(
     blurRadius: 4,

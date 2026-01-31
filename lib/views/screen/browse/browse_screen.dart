@@ -189,9 +189,7 @@ class BrowseScreen extends StatelessWidget {
               ),
               Text(
                 "5 Films found",
-                style: AppTextStyles.title14_w400(
-                  color: AppColors.subHeadingColor,
-                ),
+                style: AppTextStyles.title14_w400(color: AppColors.greyColor),
               ),
               SizedBox(height: 8.h),
               GridView.builder(
@@ -226,7 +224,7 @@ class CustomTextField extends StatelessWidget {
       controller: TextEditingController(),
       decoration: InputDecoration(
         hintText: 'Search dramas, films, creators...',
-        hintStyle: AppTextStyles.title14_w400(color: AppColors.searchTextColor),
+        hintStyle: AppTextStyles.title14_w400(color: AppColors.greyColor),
         prefixIcon: Padding(
           padding: EdgeInsets.only(
             left: 16.w,
@@ -236,7 +234,7 @@ class CustomTextField extends StatelessWidget {
           ),
           child: SvgImageWidget.asset(
             Logos.search,
-            color: AppColors.searchTextColor,
+            color: AppColors.greyColor,
             height: 24.h,
             width: 24.w,
           ),

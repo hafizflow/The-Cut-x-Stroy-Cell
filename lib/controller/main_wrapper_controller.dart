@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class MainWrapperController extends GetxController {
   late PageController pageController;
 
-  RxInt currentPage = 2.obs;
+  RxInt currentPage = 3.obs;
 
   void gotoPage(int page) {
     currentPage.value = page;

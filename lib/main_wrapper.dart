@@ -7,6 +7,7 @@ import 'package:flutter_extension/views/base/svg_image_widget.dart';
 import 'package:flutter_extension/views/screen/award/award_screen.dart';
 import 'package:flutter_extension/views/screen/browse/browse_screen.dart';
 import 'package:flutter_extension/views/screen/home/home_screen.dart';
+import 'package:flutter_extension/views/screen/upload/upload_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -27,7 +28,7 @@ class MainWrapper extends StatelessWidget {
           const HomeScreen(),
           BrowseScreen(),
           const AwardScreen(),
-          const Center(child: Text('Upload Screen')),
+          const UploadScreen(),
           const Center(child: Text('Profile Screen')),
         ],
       ),

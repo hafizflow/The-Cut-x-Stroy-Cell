@@ -24,13 +24,13 @@ class CategoryClip extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
           decoration: BoxDecoration(
-            color: isSelected ? AppColors.anotherRed : AppColors.lightRed,
+            color: isSelected ? AppColors.redBg : AppColors.lightRed,
             borderRadius: BorderRadius.circular(40.r),
           ),
           child: Text(
             label,
             style: AppTextStyles.title12_w400(
-              color: isSelected ? Colors.white : AppColors.anotherRed,
+              color: isSelected ? Colors.white : AppColors.redBg,
             ),
           ),
         ),

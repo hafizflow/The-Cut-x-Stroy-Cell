@@ -64,7 +64,7 @@ class NominationCard extends StatelessWidget {
                 Text(
                   'by $author',
                   style: AppTextStyles.title12_w400(
-                    color: AppColors.subHeadingColor,
+                    color: AppColors.greyColor,
                   ),
                 ),
                 StatLine(rating: rating, voteCount: voteCount),

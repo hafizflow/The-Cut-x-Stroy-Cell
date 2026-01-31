@@ -54,9 +54,7 @@ class StatCard extends StatelessWidget {
             // Label Text
             Text(
               label,
-              style: AppTextStyles.title12_w400(
-                color: AppColors.subHeadingColor,
-              ),
+              style: AppTextStyles.title12_w400(color: AppColors.greyColor),
             ),
           ],
         ),

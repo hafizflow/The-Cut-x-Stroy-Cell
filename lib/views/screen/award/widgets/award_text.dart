@@ -15,7 +15,7 @@ class AwardText extends StatelessWidget {
         Text("December 2025 Awards", style: AppTextStyles.title14_w500()),
         Text(
           "Vote for the best short film of the month. Winners receive prizes and recognition.",
-          style: AppTextStyles.title12_w400(color: AppColors.subHeadingColor),
+          style: AppTextStyles.title12_w400(color: AppColors.greyColor),
         ),
       ],
     );
