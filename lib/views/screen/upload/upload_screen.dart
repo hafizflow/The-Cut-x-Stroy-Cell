@@ -16,12 +16,11 @@ class UploadScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Initialize controller
     final VideoUploadController controller = Get.put(VideoUploadController());
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -46,7 +45,14 @@ class UploadScreen extends StatelessWidget {
             SizedBox(height: 24.h),
             const InfoCard(),
             const Spacer(),
-            CustomButton(onTap: () {}, text: "Next"),
+            Obx(
+              () => CustomButton(
+                onTap: () {},
+                text: "Next",
+                disabled: controller.videoFile.value == null,
+              ),
+            ),
+            SizedBox(height: 8.h),
           ],
         ),
       ),

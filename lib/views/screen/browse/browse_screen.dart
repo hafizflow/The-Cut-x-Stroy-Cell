@@ -8,6 +8,7 @@ import 'package:flutter_extension/views/base/screen_title.dart';
 import 'package:flutter_extension/views/base/svg_image_widget.dart';
 import 'package:flutter_extension/views/screen/browse/widgets/category_clip.dart';
 import 'package:flutter_extension/views/screen/browse/widgets/menu_item.dart';
+import 'package:flutter_extension/views/screen/browse/widgets/search_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -37,7 +38,7 @@ class BrowseScreen extends StatelessWidget {
             children: [
               const ScreenTitle(title: "Discover"),
               SizedBox(height: 20.h),
-              const CustomTextField(),
+              const SearchField(),
               SizedBox(height: 16.h),
               Row(
                 spacing: 12.w,
@@ -208,59 +209,6 @@ class BrowseScreen extends StatelessWidget {
                 },
               ),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: TextEditingController(),
-      decoration: InputDecoration(
-        hintText: 'Search dramas, films, creators...',
-        hintStyle: AppTextStyles.title14_w400(color: AppColors.greyColor),
-        prefixIcon: Padding(
-          padding: EdgeInsets.only(
-            left: 16.w,
-            top: 16.h,
-            bottom: 16.h,
-            right: 8.w,
-          ),
-          child: SvgImageWidget.asset(
-            Logos.search,
-            color: AppColors.greyColor,
-            height: 24.h,
-            width: 24.w,
-          ),
-        ),
-        filled: true,
-        fillColor: AppColors.lightRed,
-        contentPadding: const EdgeInsets.symmetric(vertical: 12.0),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0.r),
-          borderSide: BorderSide(
-            color: AppColors.searchFieldBorderColor,
-            width: 1,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0.r),
-          borderSide: BorderSide(
-            color: AppColors.searchFieldBorderColor,
-            width: 1,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0.r),
-          borderSide: BorderSide(
-            color: AppColors.searchFieldBorderColor,
-            width: 1,
           ),
         ),
       ),

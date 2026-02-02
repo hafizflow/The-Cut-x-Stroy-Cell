@@ -3,4 +3,5 @@ class Images {
 
   static String cardImage = "assets/images/cardImage.png";
   static String nominationCardImage = "assets/images/nominationCardImage.png";
+  static String profile = "assets/images/profile.png";
 }

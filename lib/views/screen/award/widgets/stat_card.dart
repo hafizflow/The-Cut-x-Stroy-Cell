@@ -29,9 +29,9 @@ class StatCard extends StatelessWidget {
           border: Border.all(color: AppColors.borderRed, width: 1),
         ),
         child: Column(
+          spacing: 4.h,
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Icon Container
             Container(
               width: 36.w,
               height: 36.h,
@@ -47,11 +47,7 @@ class StatCard extends StatelessWidget {
                 fit: BoxFit.scaleDown,
               ),
             ),
-            SizedBox(height: 4.h),
-            // Value Text
             Text(value, style: AppTextStyles.title16_w500()),
-            SizedBox(height: 4.h),
-            // Label Text
             Text(
               label,
               style: AppTextStyles.title12_w400(color: AppColors.greyColor),

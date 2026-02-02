@@ -19,4 +19,8 @@ class Logos {
   static String information = "assets/logos/information.svg";
   static String checkmark = "assets/logos/checkmark.svg";
   static String arrowRight = "assets/logos/arrowRight.svg";
+  static String tick = "assets/logos/tick.svg";
+  static String menu = "assets/logos/menu.svg";
+  static String pen = "assets/logos/pen.svg";
+  static String calendar = "assets/logos/calendar.svg";
 }

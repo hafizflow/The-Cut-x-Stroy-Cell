@@ -7,6 +7,7 @@ import 'package:flutter_extension/views/base/svg_image_widget.dart';
 import 'package:flutter_extension/views/screen/award/award_screen.dart';
 import 'package:flutter_extension/views/screen/browse/browse_screen.dart';
 import 'package:flutter_extension/views/screen/home/home_screen.dart';
+import 'package:flutter_extension/views/screen/profile/profile_screen.dart';
 import 'package:flutter_extension/views/screen/upload/upload_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,7 @@ class MainWrapper extends StatelessWidget {
           BrowseScreen(),
           const AwardScreen(),
           const UploadScreen(),
-          const Center(child: Text('Profile Screen')),
+          const ProfileScreen(),
         ],
       ),
       bottomNavigationBar: SafeArea(
