@@ -11,19 +11,21 @@ class TimeUnit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 71.w,
-      padding: EdgeInsets.all(8.w),
-      decoration: BoxDecoration(
-        color: AppColors.lightRed,
-        borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: AppColors.borderRed, width: 1),
-      ),
-      child: Column(
-        children: [
-          Text(value, style: AppTextStyles.title20_w500()),
-          Text(label, style: AppTextStyles.title12_w400()),
-        ],
+    return Expanded(
+      child: Container(
+        // width: 71.w,
+        padding: EdgeInsets.all(8.w),
+        decoration: BoxDecoration(
+          color: AppColors.lightRed,
+          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(color: AppColors.borderRed, width: 1),
+        ),
+        child: Column(
+          children: [
+            Text(value, style: AppTextStyles.title20_w500()),
+            Text(label, style: AppTextStyles.title12_w400()),
+          ],
+        ),
       ),
     );
   }

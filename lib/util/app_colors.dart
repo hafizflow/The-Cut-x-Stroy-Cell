@@ -36,6 +36,7 @@ class AppColors {
   static Color darkBrown = const Color(0xFF50090B);
   static Color gray = const Color(0xFFD9D9D9);
   static Color dotedBorderRed = const Color(0xFFD36266);
+  static Color lightGray = const Color(0xFF787878);
 
   static BoxShadow shadow = BoxShadow(
     blurRadius: 4,

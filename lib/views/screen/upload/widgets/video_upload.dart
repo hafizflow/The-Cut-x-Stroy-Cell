@@ -1,17 +1,20 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_extension/controller/video_upload_controller.dart';
 import 'package:flutter_extension/util/app_colors.dart';
 import 'package:flutter_extension/util/app_text_style.dart';
 import 'package:flutter_extension/util/logos.dart';
 import 'package:flutter_extension/views/base/svg_image_widget.dart';
 import 'package:flutter_extension/views/screen/upload/widgets/dashed_printer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class VideoUpload extends StatelessWidget {
   const VideoUpload({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final VideoUploadController controller = Get.find<VideoUploadController>();
+
     return Container(
       height: 228.h,
       decoration: BoxDecoration(
@@ -25,19 +28,10 @@ class VideoUpload extends StatelessWidget {
           gap: 5.0,
         ),
         child: InkWell(
-          onTap: () async {
-            final result = await FilePicker.platform.pickFiles(
-              allowedExtensions: ['mp4', 'mov', 'avif'],
-              type: FileType.video,
-            );
-            if (result == null) return;
-
-            final file = result.files.first;
-          },
+          onTap: controller.pickVideo,
           borderRadius: BorderRadius.circular(4.r),
           child: Center(
             child: Column(
-              spacing: 8.h,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CircleAvatar(
@@ -50,12 +44,14 @@ class VideoUpload extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
+                SizedBox(height: 8.h),
                 Text(
                   "Tap to select video",
                   style: AppTextStyles.title14_w400(),
                 ),
+                SizedBox(height: 8.h),
                 Text(
-                  "MP4, MOV, AVIF (Max 500MB)",
+                  "MP4, MOV, AVI (Max 500MB)",
                   style: AppTextStyles.title14_w400(color: AppColors.greyColor),
                 ),
               ],

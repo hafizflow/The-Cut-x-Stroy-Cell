@@ -36,7 +36,7 @@ class MainWrapper extends StatelessWidget {
         child: BottomAppBar(
           notchMargin: 0,
           elevation: 0,
-          height: 70.h,
+          // height: 90.h,
           color: AppColors.backgroundColor,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),

@@ -25,7 +25,7 @@ class NominationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 118.h,
+      // height: 118.h,
       width: 343.w,
       padding: EdgeInsets.all(4.w),
       decoration: BoxDecoration(

@@ -36,7 +36,7 @@ class AwardCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(8.r),
       onTap: onTap,
       child: Container(
-        width: 162.w,
+        // width: 162.w,
         padding: EdgeInsets.all(8.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
