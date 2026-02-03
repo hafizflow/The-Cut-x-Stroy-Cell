@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_extension/controller/navigation_controller.dart';
 import 'package:flutter_extension/util/app_colors.dart';
+import 'package:flutter_extension/views/screen/profile/pages/activity_page.dart';
+import 'package:flutter_extension/views/screen/profile/pages/favourites_page.dart';
+import 'package:flutter_extension/views/screen/profile/pages/my_films_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MovieTabsPage extends StatelessWidget {
@@ -15,6 +17,7 @@ class MovieTabsPage extends StatelessWidget {
     final List<String> tabs = ["My Films", "Favourites", "Activity"];
 
     return Column(
+      spacing: 16.h,
       children: [
         Obx(
           () => Row(
@@ -49,21 +52,12 @@ class MovieTabsPage extends StatelessWidget {
             }),
           ),
         ),
+        Divider(height: 1.h, color: AppColors.greyColor),
 
-        SizedBox(height: 16.h),
-
-        Divider(color: AppColors.greyColor),
-
-        SizedBox(
-          height: 400.h,
-          child: PageView(
-            controller: controller.pageController,
-            onPageChanged: (index) => controller.currentIndex.value = index,
-            children: const [
-              Center(child: Text("My Films Content")),
-              Center(child: Text("Favourites Content")),
-              Center(child: Text("Activity Content")),
-            ],
+        Obx(
+          () => IndexedStack(
+            index: controller.currentIndex.value,
+            children: const [MyFilmsPage(), FavouritesPage(), ActivityPage()],
           ),
         ),
       ],

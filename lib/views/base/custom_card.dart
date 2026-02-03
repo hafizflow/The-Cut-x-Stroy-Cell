@@ -18,7 +18,7 @@ class CustomCard extends StatelessWidget {
           height: 190.h,
           padding: EdgeInsets.zero,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(8.0.r),
             image: DecorationImage(
               image: AssetImage(Images.cardImage),
               fit: BoxFit.cover,

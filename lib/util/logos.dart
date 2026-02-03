@@ -23,4 +23,7 @@ class Logos {
   static String menu = "assets/logos/menu.svg";
   static String pen = "assets/logos/pen.svg";
   static String calendar = "assets/logos/calendar.svg";
+  static String loveFill = "assets/logos/loveFill.svg";
+  static String view = "assets/logos/view.svg";
+  static String love = "assets/logos/love.svg";
 }

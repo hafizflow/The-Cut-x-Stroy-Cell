@@ -3,7 +3,7 @@ import 'package:flutter_extension/util/logos.dart';
 import 'package:flutter_extension/views/base/screen_title.dart';
 import 'package:flutter_extension/views/base/svg_image_widget.dart';
 import 'package:flutter_extension/views/screen/award/widgets/stat_row.dart';
-import 'package:flutter_extension/views/screen/profile/widgets/movie_tabs_page.dart';
+import 'package:flutter_extension/views/screen/profile/pages/movie_tabs_page.dart';
 import 'package:flutter_extension/views/screen/profile/widgets/profile_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
