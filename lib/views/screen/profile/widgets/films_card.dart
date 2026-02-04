@@ -82,7 +82,7 @@ class FilmsCard extends StatelessWidget {
                   ),
                 ),
 
-              if (favourites())
+              if (favourites() || myFilms())
                 Positioned(
                   bottom: 10.h,
                   right: 10.w,
