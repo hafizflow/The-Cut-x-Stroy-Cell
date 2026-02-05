@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_extension/controller/video_player_controller.dart';
 import 'package:flutter_extension/util/app_colors.dart';
 import 'package:flutter_extension/util/app_text_style.dart';
 import 'package:flutter_extension/util/images.dart';
 import 'package:flutter_extension/util/logos.dart';
 import 'package:flutter_extension/views/base/custom_video_player.dart';
 import 'package:flutter_extension/views/base/svg_image_widget.dart';
-import 'package:flutter_extension/views/screen/upload/widgets/info_item.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 class VideoScreen extends StatelessWidget {
   const VideoScreen({super.key});
@@ -55,17 +51,36 @@ class VideoScreen extends StatelessWidget {
                     revenue(),
                     viewAnalytics(),
                     interactionSection(),
-                    festivalCard(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: 12.h,
-                      children: [
-                        sectionHeader("Festival History"),
-                        filmFestivalCard(),
-                        interNationalFilmFestivalCard(),
-                        
-                      ],
+                    Container(
+                      padding: EdgeInsets.all(12.w),
+                      decoration: BoxDecoration(
+                        color: AppColors.redBg,
+                        // border: Border.all(color: AppColors.orangeBg),
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      child: Row(
+                        spacing: 8.w,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgImageWidget.asset(
+                            Logos.badge,
+                            width: 16.w,
+                            height: 16.h,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'Make Unavailable for Festival',
+                            style: AppTextStyles.title12_w500(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
+                    festivalCard(),
+                    festivalSection(),
+                    awardSection(),
+                    reviewSection(),
                   ],
                 ),
               ),
@@ -73,6 +88,217 @@ class VideoScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Column reviewSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 8.h,
+      children: [
+        sectionHeader("Reviews (3)"),
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: 3,
+          itemBuilder: (context, index) => reviewCard(),
+          separatorBuilder: (context, index) => SizedBox(height: 8.h),
+        ),
+      ],
+    );
+  }
+
+  Container reviewCard() {
+    return Container(
+      padding: EdgeInsets.all(12.r),
+      decoration: BoxDecoration(
+        color: AppColors.lightRed,
+        borderRadius: BorderRadius.circular(12.r),
+        border: Border.all(color: AppColors.borderRed, width: 1.w),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.all(10.w),
+                decoration: BoxDecoration(
+                  color: AppColors.redBg,
+                  shape: BoxShape.circle,
+                ),
+                child: SvgImageWidget.asset(
+                  Logos.user,
+                  color: Colors.white,
+                  width: 20.w,
+                ),
+              ),
+              SizedBox(width: 12.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Sarah Williams",
+                          style: AppTextStyles.title16_w400(),
+                        ),
+                        Row(
+                          spacing: 4.w,
+                          children: [
+                            Text(
+                              "5 days ago",
+                              style: AppTextStyles.title10_w400(
+                                color: AppColors.greyColor,
+                              ),
+                            ),
+                            Icon(
+                              Icons.more_vert,
+                              size: 20.sp,
+                              color: Colors.black,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: List.generate(
+                        5,
+                        (index) => Icon(
+                          Icons.star,
+                          color: Colors.orangeAccent,
+                          size: 16.sp,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 16.h),
+          Text(
+            "Great performances and emotional depth. Highly recommend!",
+            style: AppTextStyles.title12_w400(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Column awardSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 12.h,
+      children: [
+        Row(
+          children: [
+            sectionHeader("Top Awards & Recognition"),
+            const Spacer(),
+            SvgImageWidget.asset(Logos.arrowRight, color: Colors.black),
+          ],
+        ),
+
+        Container(
+          padding: EdgeInsets.all(12.w),
+          decoration: BoxDecoration(
+            color: AppColors.brownBg,
+            border: Border.all(color: AppColors.orangeBg),
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+          child: Row(
+            spacing: 8.w,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SvgImageWidget.asset(
+                Logos.badge,
+                width: 16.w,
+                height: 16.h,
+                color: AppColors.orangeBg,
+              ),
+              Text(
+                'Viewer’s Choice',
+                style: AppTextStyles.title12_w500(color: AppColors.orangeBg),
+              ),
+              const Spacer(),
+              Text(
+                '288',
+                style: AppTextStyles.title12_w500(color: AppColors.orangeBg),
+              ),
+            ],
+          ),
+        ),
+
+        Container(
+          padding: EdgeInsets.all(12.w),
+          decoration: BoxDecoration(
+            color: AppColors.brownBg,
+            border: Border.all(color: AppColors.orangeBg),
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+          child: Row(
+            spacing: 8.w,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SvgImageWidget.asset(
+                Logos.badge,
+                width: 16.w,
+                height: 16.h,
+                color: AppColors.orangeBg,
+              ),
+              Text(
+                'Best Cinematography',
+                style: AppTextStyles.title12_w500(color: AppColors.orangeBg),
+              ),
+              const Spacer(),
+              Text(
+                '287',
+                style: AppTextStyles.title12_w500(color: AppColors.orangeBg),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Column festivalSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 12.h,
+      children: [
+        sectionHeader("Festival History"),
+        filmFestivalCard(),
+        interNationalFilmFestivalCard(),
+        Container(
+          padding: EdgeInsets.all(12.w),
+          decoration: BoxDecoration(
+            color: AppColors.brownBg,
+            border: Border.all(color: AppColors.orangeBg),
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+          child: Row(
+            spacing: 8.w,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgImageWidget.asset(
+                Logos.thumbs,
+                width: 16.w,
+                height: 16.h,
+                color: AppColors.orangeBg,
+              ),
+              Text(
+                'Active',
+                style: AppTextStyles.title12_w500(color: AppColors.orangeBg),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -133,25 +359,26 @@ class VideoScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 4.h,
-            children: [
-              Text(
-                'Sundance Film Festival 2025',
-                style: AppTextStyles.title16_w500(),
-              ),
-              Text(
-                'Made unavailable: Jan 15, 2025',
-                style: AppTextStyles.title14_w400(color: AppColors.greyColor),
-              ),
-              Text(
-                'Expected return: Feb 15, 2025',
-                style: AppTextStyles.title14_w400(color: AppColors.greyColor),
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 4.h,
+              children: [
+                Text(
+                  'Sundance Film Festival 2025',
+                  style: AppTextStyles.title16_w500(),
+                ),
+                Text(
+                  'Made unavailable: Jan 15, 2025',
+                  style: AppTextStyles.title14_w400(color: AppColors.greyColor),
+                ),
+                Text(
+                  'Expected return: Feb 15, 2025',
+                  style: AppTextStyles.title14_w400(color: AppColors.greyColor),
+                ),
+              ],
+            ),
           ),
-          const Spacer(),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.5.h),
             decoration: BoxDecoration(
@@ -176,7 +403,7 @@ class VideoScreen extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
-        color: AppColors.lightRed,
+        // color: AppColors.lightRed,
         borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: AppColors.borderRed, width: 1.w),
       ),

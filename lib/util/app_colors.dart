@@ -42,7 +42,11 @@ class AppColors {
   static Color lightgreenBg = const Color(0xFFDCFCE7);
   static Color deepGreen = const Color(0xFF1D6C31);
   static Color greyBg = const Color(0xFFC8CFE2);
-  static Color greenBgWithOpacity = const Color(0xFF34C759).withValues(alpha: 0.5);
+  static Color greenBgWithOpacity = const Color(
+    0xFF34C759,
+  ).withValues(alpha: 0.5);
+  static Color brownBg = const Color(0xFF211109);
+  static Color orangeBg = const Color(0xFFFF8D28);
 
   static BoxShadow shadow = BoxShadow(
     blurRadius: 4,
