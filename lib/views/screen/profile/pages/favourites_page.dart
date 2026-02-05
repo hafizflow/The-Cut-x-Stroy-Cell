@@ -23,10 +23,9 @@ class FavouritesPage extends StatelessWidget {
         return FilmsCard(
           cardType: FilmCardType.favourites,
           imageUrl: Images.cardImage,
-          onFavoriteTap: () {},
+          ontap: () {},
         );
       },
     );
   }
 }
-

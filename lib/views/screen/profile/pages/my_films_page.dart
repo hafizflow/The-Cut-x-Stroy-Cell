@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_extension/helper/route_helper.dart';
 import 'package:flutter_extension/util/images.dart';
 import 'package:flutter_extension/views/screen/profile/widgets/films_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class MyFilmsPage extends StatelessWidget {
   const MyFilmsPage({super.key});
@@ -23,7 +25,10 @@ class MyFilmsPage extends StatelessWidget {
         return FilmsCard(
           cardType: FilmCardType.myFilms,
           imageUrl: Images.cardImage,
-          onFavoriteTap: () {},
+          ontap: () {
+            Get.toNamed(AppRoutes.videoScreen);
+            debugPrint('Favorite tapped on film');
+          },
         );
       },
     );

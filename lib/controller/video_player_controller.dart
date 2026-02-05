@@ -2,20 +2,26 @@ import 'package:get/get.dart';
 import 'package:video_player/video_player.dart' as vp;
 
 class CustomVideoPlayerController extends GetxController {
-  late vp.VideoPlayerController videoController;
+  vp.VideoPlayerController? videoController;
 
   final RxBool isInitialized = false.obs;
   final RxBool showControls = true.obs;
+  final RxInt currentIndex = 0.obs;
 
-  final String assetPath;
+  final List<String> videoList;
   final bool autoPlay;
   final bool looping;
+  final bool isAsset;
 
   CustomVideoPlayerController({
-    required this.assetPath,
+    required this.videoList,
     this.autoPlay = false,
     this.looping = false,
-  });
+    this.isAsset = true,
+    int initialIndex = 0,
+  }) {
+    currentIndex.value = initialIndex;
+  }
 
   @override
   void onInit() {
@@ -24,23 +30,51 @@ class CustomVideoPlayerController extends GetxController {
   }
 
   Future<void> _initializeVideo() async {
-    videoController = vp.VideoPlayerController.asset(assetPath);
+    isInitialized.value = false;
 
-    await videoController.initialize();
-    videoController.setLooping(looping);
-    isInitialized.value = true;
-
-    if (autoPlay) {
-      videoController.play();
+    if (videoController != null) {
+      await videoController!.pause();
+      videoController!.removeListener(update);
+      await videoController!.dispose();
+      videoController = null;
     }
 
-    videoController.addListener(update);
+    await Future.delayed(const Duration(milliseconds: 100));
+
+    try {
+      if (isAsset) {
+        videoController = vp.VideoPlayerController.asset(
+          videoList[currentIndex.value],
+        );
+      } else {
+        videoController = vp.VideoPlayerController.networkUrl(
+          Uri.parse(videoList[currentIndex.value]),
+        );
+      }
+
+      await videoController!.initialize();
+      videoController!.setLooping(looping);
+      videoController!.addListener(update);
+
+      isInitialized.value = true;
+
+      if (autoPlay) {
+        await videoController!.play();
+      }
+
+      update();
+    } catch (e) {
+      print('Error initializing video: $e');
+      isInitialized.value = false;
+    }
   }
 
   void togglePlayPause() {
-    videoController.value.isPlaying
-        ? videoController.pause()
-        : videoController.play();
+    if (videoController == null || !isInitialized.value) return;
+
+    videoController!.value.isPlaying
+        ? videoController!.pause()
+        : videoController!.play();
     update();
   }
 
@@ -48,18 +82,19 @@ class CustomVideoPlayerController extends GetxController {
     showControls.toggle();
   }
 
-  void skipForward() {
-    final newPosition =
-        videoController.value.position + const Duration(seconds: 10);
-    videoController.seekTo(
-      newPosition < videoController.value.duration
-          ? newPosition
-          : videoController.value.duration,
-    );
+  Future<void> playNextVideo() async {
+    if (currentIndex.value < videoList.length - 1) {
+      currentIndex.value++;
+    } else {
+      currentIndex.value = 0;
+    }
+    await _initializeVideo();
   }
 
   void toggleVolume() {
-    videoController.setVolume(videoController.value.volume > 0 ? 0 : 1);
+    if (videoController == null || !isInitialized.value) return;
+
+    videoController!.setVolume(videoController!.value.volume > 0 ? 0 : 1);
     update();
   }
 
@@ -69,7 +104,10 @@ class CustomVideoPlayerController extends GetxController {
 
   @override
   void onClose() {
-    videoController.dispose();
+    if (videoController != null) {
+      videoController!.removeListener(update);
+      videoController!.dispose();
+    }
     super.onClose();
   }
 }

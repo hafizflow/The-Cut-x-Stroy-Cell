@@ -1,89 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_extension/controller/video_player_controller.dart';
 import 'package:flutter_extension/util/app_colors.dart';
 import 'package:flutter_extension/util/app_text_style.dart';
 import 'package:flutter_extension/util/logos.dart';
 import 'package:flutter_extension/views/base/svg_image_widget.dart';
-import 'package:flutter_extension/views/screen/profile/full_screen_video.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
-class CustomVideoPlayerWidget extends StatelessWidget {
-  final List<String> videoList;
-  final bool autoPlay;
-  final bool looping;
-  final bool isAsset;
-  final int initialIndex;
+class FullScreenVideoPage extends StatefulWidget {
+  final String controllerTag;
 
-  const CustomVideoPlayerWidget({
-    super.key,
-    required this.videoList,
-    this.autoPlay = false,
-    this.looping = false,
-    this.isAsset = true,
-    this.initialIndex = 0,
-  });
+  const FullScreenVideoPage({super.key, required this.controllerTag});
+
+  @override
+  State<FullScreenVideoPage> createState() => _FullScreenVideoPageState();
+}
+
+class _FullScreenVideoPageState extends State<FullScreenVideoPage> {
+  bool showControls = true;
+
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    super.dispose();
+  }
+
+  void toggleControls() {
+    setState(() {
+      showControls = !showControls;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final String tag = 'video_${videoList.hashCode}';
-
-    Get.put(
-      CustomVideoPlayerController(
-        videoList: videoList,
-        autoPlay: autoPlay,
-        looping: looping,
-        isAsset: isAsset,
-        initialIndex: initialIndex,
-      ),
-      tag: tag,
-    );
-
     return GetBuilder<CustomVideoPlayerController>(
-      tag: tag,
+      tag: widget.controllerTag,
       builder: (controller) {
         return Obx(() {
-          return _buildVideoPlayer(context, controller, tag);
-        });
-      },
-    );
-  }
-
-  Widget _buildVideoPlayer(
-    BuildContext context,
-    CustomVideoPlayerController controller,
-    String tag,
-  ) {
-    if (!controller.isInitialized.value || controller.videoController == null) {
-      return Container(
-        color: Colors.black,
-        child: const Center(
-          child: CircularProgressIndicator(color: Colors.white),
-        ),
-      );
-    }
-
-    return GestureDetector(
-      onTap: controller.toggleControls,
-      child: Container(
-        color: Colors.black,
-        height: 354.h,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            // Video player
-            Center(
-              child: SizedBox(
-                height: 354.h,
-                child: VideoPlayer(controller.videoController!),
+          if (!controller.isInitialized.value ||
+              controller.videoController == null) {
+            return const Scaffold(
+              backgroundColor: Colors.black,
+              body: Center(
+                child: CircularProgressIndicator(color: Colors.white),
               ),
-            ),
+            );
+          }
 
-            // Gradient overlay
-            Obx(
-              () => controller.showControls.value
-                  ? IgnorePointer(
+          return Scaffold(
+            backgroundColor: Colors.black,
+            body: GestureDetector(
+              onTap: toggleControls,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  // Video player
+                  Center(
+                    child: AspectRatio(
+                      aspectRatio:
+                          controller.videoController!.value.aspectRatio,
+                      child: VideoPlayer(controller.videoController!),
+                    ),
+                  ),
+
+                  // Gradient overlay
+                  if (showControls)
+                    IgnorePointer(
                       child: Container(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -99,22 +94,15 @@ class CustomVideoPlayerWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                    )
-                  : const SizedBox.shrink(),
-            ),
+                    ),
 
-            // Back button (top left)
-            Obx(
-              () => controller.showControls.value
-                  ? Positioned(
+                  // Back button (top left)
+                  if (showControls)
+                    Positioned(
                       top: 20.h,
                       left: 16.w,
                       child: GestureDetector(
                         onTap: () {
-                          if (controller.videoController != null) {
-                            controller.videoController!.pause();
-                          }
-                          Get.delete<CustomVideoPlayerController>(tag: tag);
                           Get.back();
                         },
                         child: SvgImageWidget.asset(
@@ -122,16 +110,11 @@ class CustomVideoPlayerWidget extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                    )
-                  : const SizedBox.shrink(),
-            ),
+                    ),
 
-            // Video counter (top right)
-            Obx(
-              () =>
-                  controller.showControls.value &&
-                      controller.videoList.length > 1
-                  ? Positioned(
+                  // Video counter (top right)
+                  if (showControls && controller.videoList.length > 1)
+                    Positioned(
                       top: 20.h,
                       right: 16.w,
                       child: Container(
@@ -150,14 +133,11 @@ class CustomVideoPlayerWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                    )
-                  : const SizedBox.shrink(),
-            ),
+                    ),
 
-            // Bottom controls
-            Obx(
-              () => controller.showControls.value
-                  ? Positioned(
+                  // Bottom controls
+                  if (showControls)
+                    Positioned(
                       bottom: 0,
                       left: 0,
                       right: 0,
@@ -165,7 +145,7 @@ class CustomVideoPlayerWidget extends StatelessWidget {
                         padding: EdgeInsets.only(
                           left: 16.w,
                           right: 16.w,
-                          bottom: 24.h,
+                          bottom: 16.h,
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -246,16 +226,10 @@ class CustomVideoPlayerWidget extends StatelessWidget {
 
                                 const Spacer(),
 
-                                // Fullscreen button
-                                // In the fullscreen button's onTap, change this:
+                                // Exit fullscreen button
                                 GestureDetector(
                                   onTap: () {
-                                    // Navigate to fullscreen page with controller tag
-                                    Get.to(
-                                      () => FullScreenVideoPage(
-                                        controllerTag: tag,
-                                      ),
-                                    );
+                                    Get.back();
                                   },
                                   child: SvgImageWidget.asset(
                                     Logos.fullScreen,
@@ -267,12 +241,13 @@ class CustomVideoPlayerWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
-                  : const SizedBox.shrink(),
+                    ),
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
+          );
+        });
+      },
     );
   }
 }

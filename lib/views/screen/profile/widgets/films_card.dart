@@ -12,7 +12,7 @@ class FilmsCard extends StatelessWidget {
   final String imageUrl;
   final String? title;
   final String? duration;
-  final VoidCallback? onFavoriteTap;
+  final VoidCallback? ontap;
 
   const FilmsCard({
     super.key,
@@ -20,51 +20,51 @@ class FilmsCard extends StatelessWidget {
     required this.imageUrl,
     this.title,
     this.duration,
-    this.onFavoriteTap,
+    this.ontap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          width: 161.5.w,
-          height: 190.h,
-          padding: EdgeInsets.zero,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0.r),
-            image: DecorationImage(
-              image: AssetImage(imageUrl),
-              fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: ontap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 161.5.w,
+            height: 190.h,
+            padding: EdgeInsets.zero,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0.r),
+              image: DecorationImage(
+                image: AssetImage(imageUrl),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          child: Stack(
-            children: [
-              if (favourites())
-                Positioned(
-                  top: 10.h,
-                  left: 10.w,
-                  child: _buildBadge(
-                    color: AppColors.red,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 2.5,
-                    ),
-                    child: Text(
-                      "New",
-                      style: AppTextStyles.title12_w500(color: Colors.white),
+            child: Stack(
+              children: [
+                if (favourites())
+                  Positioned(
+                    top: 10.h,
+                    left: 10.w,
+                    child: _buildBadge(
+                      color: AppColors.red,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 2.5,
+                      ),
+                      child: Text(
+                        "New",
+                        style: AppTextStyles.title12_w500(color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
 
-              if (favourites())
-                Positioned(
-                  top: 10.h,
-                  right: 10.w,
-                  child: GestureDetector(
-                    onTap: onFavoriteTap,
+                if (favourites())
+                  Positioned(
+                    top: 10.h,
+                    right: 10.w,
                     child: Container(
                       padding: EdgeInsets.all(2.r),
                       decoration: BoxDecoration(
@@ -80,95 +80,99 @@ class FilmsCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
 
-              if (favourites() || myFilms())
-                Positioned(
-                  bottom: 10.h,
-                  right: 10.w,
-                  child: _buildBadge(
-                    color: AppColors.secondaryColor,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 2.5,
-                    ),
-                    child: Text(
-                      duration ?? "18:21",
-                      style: AppTextStyles.title12_w500(color: Colors.white),
-                    ),
-                  ),
-                ),
-
-              if (myFilms() || activity())
-                Positioned(
-                  top: 10.h,
-                  left: 10.w,
-                  child: Row(
-                    spacing: 4.w,
-                    children: [
-                      SvgImageWidget.asset(
-                        Logos.view,
-                        width: 16.w,
-                        height: 16.h,
-                        color: Colors.white,
+                if (favourites() || myFilms())
+                  Positioned(
+                    bottom: 10.h,
+                    right: 10.w,
+                    child: _buildBadge(
+                      color: AppColors.secondaryColor,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 2.5,
                       ),
-                      Text(
-                        "1.1M",
+                      child: Text(
+                        duration ?? "18:21",
                         style: AppTextStyles.title12_w500(color: Colors.white),
                       ),
-                    ],
+                    ),
                   ),
-                ),
 
-              if (myFilms() || activity())
-                Positioned(
-                  bottom: 10.h,
-                  left: 10.w,
-                  child: Row(
-                    spacing: 4.w,
-                    children: [
-                      SvgImageWidget.asset(
-                        Logos.love,
-                        width: 16.w,
-                        height: 16.h,
-                        color: Colors.white,
+                if (myFilms() || activity())
+                  Positioned(
+                    top: 10.h,
+                    left: 10.w,
+                    child: Row(
+                      spacing: 4.w,
+                      children: [
+                        SvgImageWidget.asset(
+                          Logos.view,
+                          width: 16.w,
+                          height: 16.h,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          "1.1M",
+                          style: AppTextStyles.title12_w500(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                if (myFilms() || activity())
+                  Positioned(
+                    bottom: 10.h,
+                    left: 10.w,
+                    child: Row(
+                      spacing: 4.w,
+                      children: [
+                        SvgImageWidget.asset(
+                          Logos.love,
+                          width: 16.w,
+                          height: 16.h,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          "1.1k",
+                          style: AppTextStyles.title12_w500(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                if (activity())
+                  Positioned(
+                    bottom: 10.h,
+                    right: 10.w,
+                    child: _buildBadge(
+                      color: AppColors.greenBg,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 2.5,
                       ),
-                      Text(
-                        "1.1k",
+                      child: Text(
+                        "Approved",
                         style: AppTextStyles.title12_w500(color: Colors.white),
                       ),
-                    ],
-                  ),
-                ),
-
-              if (activity())
-                Positioned(
-                  bottom: 10.h,
-                  right: 10.w,
-                  child: _buildBadge(
-                    color: AppColors.greenBg,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 2.5,
-                    ),
-                    child: Text(
-                      "Approved",
-                      style: AppTextStyles.title12_w500(color: Colors.white),
                     ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
-        ),
-        SizedBox(height: 8.h),
-        if (title != null)
-          Text(
-            title!,
-            style: AppTextStyles.title12_w500(color: Colors.black),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-      ],
+          SizedBox(height: 8.h),
+          if (title != null)
+            Text(
+              title!,
+              style: AppTextStyles.title12_w500(color: Colors.black),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+        ],
+      ),
     );
   }
 

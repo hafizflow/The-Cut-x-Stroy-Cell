@@ -26,4 +26,10 @@ class Logos {
   static String loveFill = "assets/logos/loveFill.svg";
   static String view = "assets/logos/view.svg";
   static String love = "assets/logos/love.svg";
+  static String pause = "assets/logos/pause.svg";
+  static String play = "assets/logos/play.svg";
+  static String fullScreen = "assets/logos/fullScreen.svg";
+  static String locked = "assets/logos/locked.svg";
+  static String next = "assets/logos/next.svg";
+  static String volumeHigh = "assets/logos/volumeHigh.svg";
 }

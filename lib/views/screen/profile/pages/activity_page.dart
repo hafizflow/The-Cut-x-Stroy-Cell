@@ -24,7 +24,7 @@ class ActivityPage extends StatelessWidget {
           cardType: FilmCardType.activity,
           imageUrl: Images.cardImage,
           title: "Movie Title - Action",
-          onFavoriteTap: () {},
+          ontap: () {},
         );
       },
     );

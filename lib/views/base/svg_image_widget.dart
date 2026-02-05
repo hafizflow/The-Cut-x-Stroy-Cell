@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 /// A reusable widget for displaying SVG images
@@ -102,8 +103,8 @@ class SvgImageWidget extends StatelessWidget {
     if (isNetwork) {
       return SvgPicture.network(
         path,
-        width: width,
-        height: height,
+        width: width ?? 24.w,
+        height: height ?? 24.h,
         colorFilter: color != null
             ? ColorFilter.mode(color!, BlendMode.srcIn)
             : null,
@@ -118,8 +119,8 @@ class SvgImageWidget extends StatelessWidget {
 
     return SvgPicture.asset(
       path,
-      width: width,
-      height: height,
+      width: width ?? 24.w,
+      height: height ?? 24.h,
       colorFilter: color != null
           ? ColorFilter.mode(color!, BlendMode.srcIn)
           : null,
