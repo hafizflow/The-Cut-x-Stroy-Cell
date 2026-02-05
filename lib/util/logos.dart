@@ -32,4 +32,8 @@ class Logos {
   static String locked = "assets/logos/locked.svg";
   static String next = "assets/logos/next.svg";
   static String volumeHigh = "assets/logos/volumeHigh.svg";
+  static String download = "assets/logos/download.svg";
+  static String comment = "assets/logos/comment.svg";
+  static String share = "assets/logos/share.svg";
+  static String gift = "assets/logos/gift.svg";
 }

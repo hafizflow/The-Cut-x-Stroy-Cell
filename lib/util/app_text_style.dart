@@ -78,6 +78,11 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
     color: color,
   );
+  static TextStyle title10_w400({Color? color}) => GoogleFonts.poppins(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w400,
+    color: color,
+  );
   static TextStyle title12_w400({Color? color}) => GoogleFonts.poppins(
     fontSize: 12.sp,
     fontWeight: FontWeight.w400,

@@ -128,7 +128,7 @@ class _FullScreenVideoPageState extends State<FullScreenVideoPage> {
                         ),
                         child: Text(
                           '${controller.currentIndex.value + 1}/${controller.videoList.length}',
-                          style: AppTextStyles.title14_w500(
+                          style: AppTextStyles.title10_w400(
                             color: Colors.white,
                           ),
                         ),
@@ -210,7 +210,7 @@ class _FullScreenVideoPageState extends State<FullScreenVideoPage> {
                                         ? Icons.volume_up
                                         : Icons.volume_off,
                                     color: Colors.white,
-                                    size: 24.sp,
+                                    size: 12.sp,
                                   ),
                                 ),
 
@@ -219,7 +219,7 @@ class _FullScreenVideoPageState extends State<FullScreenVideoPage> {
                                 // Time display
                                 Text(
                                   '${controller.formatDuration(controller.videoController!.value.position)} / ${controller.formatDuration(controller.videoController!.value.duration)}',
-                                  style: AppTextStyles.title14_w500(
+                                  style: AppTextStyles.title10_w500(
                                     color: AppColors.greyColor,
                                   ),
                                 ),

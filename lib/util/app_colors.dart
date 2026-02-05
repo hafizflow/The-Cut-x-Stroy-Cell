@@ -38,6 +38,12 @@ class AppColors {
   static Color dotedBorderRed = const Color(0xFFD36266);
   static Color lightGray = const Color(0xFF787878);
 
+  static Color amber = const Color(0xFFA57E00);
+  static Color lightgreenBg = const Color(0xFFDCFCE7);
+  static Color deepGreen = const Color(0xFF1D6C31);
+  static Color greyBg = const Color(0xFFC8CFE2);
+  static Color greenBgWithOpacity = const Color(0xFF34C759).withValues(alpha: 0.5);
+
   static BoxShadow shadow = BoxShadow(
     blurRadius: 4,
     spreadRadius: 0,
